@@ -80,4 +80,4 @@ python inference.py --base /path/to/base-model --source-file source.txt
 
 ## 라이선스
 
-[Upstage Solar License](LICENSE)를 따릅니다. 출처 및 변경 사항은 [NOTICE](NOTICE)에 명시되어 있습니다. 본 모델은 Upstage의 공식 제품이 아닙니다.
+[Upstage Solar License](LICENSE.md)를 따릅니다. 출처 및 변경 사항은 [NOTICE](NOTICE)에 명시되어 있습니다. 본 모델은 Upstage의 공식 제품이 아닙니다.

@@ -2,7 +2,7 @@ Solar-HistoryTransSummary-Open2-B200
 Built with Solar
 
 This project fine-tunes upstage/Solar-Open2-250B and uses the model under the
-Upstage Solar License included in LICENSE.
+Upstage Solar License included in LICENSE.md.
 
 Base model:
   upstage/Solar-Open2-250B

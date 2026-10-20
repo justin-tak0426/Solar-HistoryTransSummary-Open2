@@ -4,7 +4,7 @@ library_name: peft
 pipeline_tag: text-generation
 license: other
 license_name: upstage-solar-license
-license_link: LICENSE
+license_link: LICENSE.md
 language:
 - ko
 tags:
@@ -25,7 +25,7 @@ dropout 0.05, one epoch, 9,316 optimizer steps. The final checkpoint was also
 selected as the best checkpoint by full-validation selection loss (0.471465).
 The original backbone is required separately to use this adapter.
 
-Distributed under the [Upstage Solar License](LICENSE); see [NOTICE](NOTICE)
+Distributed under the [Upstage Solar License](LICENSE.md); see [NOTICE](NOTICE)
 for attribution and modification details. This derivative model is not an
 official Upstage product and is not sponsored, endorsed, or certified by Upstage.
 See the [repository README](../README.md) for installation, inference,
