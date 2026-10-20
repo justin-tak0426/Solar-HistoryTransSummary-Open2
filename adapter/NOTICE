@@ -1,0 +1,27 @@
+Solar-HistoryTransSummary-Open2-B200
+Built with Solar
+
+This project fine-tunes upstage/Solar-Open2-250B and uses the model under the
+Upstage Solar License included in LICENSE.
+
+Base model:
+  upstage/Solar-Open2-250B
+  revision 8d1dda5ad2af58207c65348d825772d2f4d72481
+
+Derivative model name:
+  Solar-HistoryTransSummary-Open2-B200
+
+Neither this project nor its derivative model is sponsored, endorsed,
+certified, or published as an official Upstage product.
+
+The pinned upstream Solar Open 2 repository did not contain a NOTICE file at
+the time this project was prepared. This NOTICE adds project-specific
+attribution and does not alter the Upstage Solar License.
+
+Modifications in this distribution:
+  The base model was fine-tuned with LoRA for historical-document translation
+  and summarization into contemporary Korean (rank 32, alpha 64, one epoch,
+  9,316 optimizer steps). The adapter contains the learned modifications;
+  the complete upstream backbone weights are not included.
+  Training code, configuration, documentation, and an inference example
+  accompany the adapter.

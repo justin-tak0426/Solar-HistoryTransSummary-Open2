@@ -1,0 +1,88 @@
+{
+  "schema": "solar-open2-b200-data-contract",
+  "schema_version": 1,
+  "profile": "b200",
+  "owned_root": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2",
+  "raw_data_dir": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/data/raw/hard_subset",
+  "prepared_data_dir": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/data",
+  "prepared_manifest": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/data/manifest.json",
+  "prepared_manifest_sha256": "36150c70d28600c1de4495412d83da3e0102ab50ff8f120095f6a106c7e93b03",
+  "reference_evaluator": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/project/scripts/reference/shared_nodict_evaluation.py",
+  "reference_evaluator_source": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/project/scripts/reference/shared_nodict_evaluation.py",
+  "reference_evaluator_sha256": "a6e68d29f3db569ff78283f15b10680c11c2ff9f6472453dc8fd6ef9a7320b23",
+  "human_gold_raw": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/data/raw/human_gold/test-human-infer-vocab-final.jsonl",
+  "human_gold_raw_sha256": "996a094e9abca028bf89a647a86645715b9a6b05331f85dead4f3f5197eb531b",
+  "split_policy": "source-declared train/validation/test; human-gold groups excluded from train and validation",
+  "selection_datasets": [
+    "validation"
+  ],
+  "sealed_evaluation_datasets": [
+    "full_test",
+    "human_gold"
+  ],
+  "test_and_human_gold_monitoring_allowed": false,
+  "files": {
+    "train": {
+      "name": "train.jsonl",
+      "path": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/data/train.jsonl",
+      "sha256": "b24db45b8c86f65f561df4704ca3a3871e80f28bba74a0e01aeb1801fbd34e83",
+      "rows": 142713,
+      "by_task": {
+        "translation": 97044,
+        "summarization": 45669
+      },
+      "quality": {
+        "gold_expert_corrected": 905,
+        "silver_model_generated": 141808
+      }
+    },
+    "validation": {
+      "name": "validation.jsonl",
+      "path": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/data/validation.jsonl",
+      "sha256": "f63b7adaf77cc87e6bd5254d36def0026cce184e5bb77d44a9255b8904a65665",
+      "rows": 17850,
+      "by_task": {
+        "translation": 12133,
+        "summarization": 5717
+      }
+    },
+    "full_test": {
+      "name": "full_test_nodict.jsonl",
+      "path": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/data/full_test_nodict.jsonl",
+      "sha256": "7720be8e8410fc176aa9b93a089d0063cab0f1dc9c3bf046e7af474c027ad006",
+      "rows": 18557,
+      "by_task": {
+        "translation": 12947,
+        "summarization": 5610
+      }
+    },
+    "human_gold": {
+      "name": "human_gold_nodict.jsonl",
+      "path": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/data/human_gold_nodict.jsonl",
+      "sha256": "d841fa159461e86b3be84b3c3f1fecf32b457f18221ea3e94f8cfd67c8fa3bf5",
+      "rows": 1221,
+      "by_task": {
+        "translation": 1065,
+        "summarization": 156
+      }
+    },
+    "combined_eval": {
+      "name": "combined_test_and_gold_nodict.jsonl",
+      "path": "/NHNHOME/WORKSPACE/26mfds002_B/jhtak/solar-open-2/data/combined_test_and_gold_nodict.jsonl",
+      "sha256": "6ee48a2ad2a884ca3f661ee30624052110d7f46bbb053fc7ce35d6243a3e1eec",
+      "rows": 19778,
+      "by_task": {
+        "translation": 14012,
+        "summarization": 5766
+      }
+    }
+  },
+  "raw_files": {
+    "translation.train.jsonl.gz": "efca50de0510673a115d971b2fac826ef93fbad3a4acfd16e42b0c9156d0d4d6",
+    "translation.validation.jsonl.gz": "24aed6112214dcbb17df52750152775636a445af8fcbb2ed37888b9513b72e70",
+    "translation.test.jsonl.gz": "141c66623e8188c299ee1170f290b52259e0e15e121340434b84f0c152e19b8b",
+    "summarization.train.jsonl.gz": "406610705c5c8a9cf05d75a299da4b196551b48df84aeaf8fdd0498939500580",
+    "summarization.validation.jsonl.gz": "4d43f0186e63b525c411548a7678523fc0f83786e72b3c68923942c883db4b16",
+    "summarization.test.jsonl.gz": "dfe9597cd4fd57d1f0e2641a1f789e7114b390ad3054a04de926bd83ddc7c900"
+  }
+}

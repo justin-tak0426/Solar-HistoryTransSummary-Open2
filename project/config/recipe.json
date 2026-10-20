@@ -1,0 +1,213 @@
+{
+  "recipe_name": "solar_open2_hardterm_fancy_v3_earlystop",
+  "epochs": 2,
+  "optimizer_steps": 18631,
+  "micro_batch_size": 1,
+  "gradient_accumulation_steps": 16,
+  "effective_batch_size": 16,
+  "microbatch_policy": {
+    "mode": "dynamic_length_bucket_target_subject_to_gpu_smoke",
+    "fallback_micro_batch_size": 1,
+    "fallback_gradient_accumulation_steps": 16,
+    "optimizer_step_occurrences": 16,
+    "deck_order_contract": "consecutive_16_occurrence_optimizer_groups; bucket only within each group; no cross-step pull-ahead",
+    "buckets": [
+      {
+        "min_length_inclusive": 1,
+        "max_length_inclusive": 1024,
+        "target_micro_batch_size": 8
+      },
+      {
+        "min_length_inclusive": 1025,
+        "max_length_inclusive": 2048,
+        "target_micro_batch_size": 4
+      },
+      {
+        "min_length_inclusive": 2049,
+        "max_length_inclusive": 4096,
+        "target_micro_batch_size": 2
+      },
+      {
+        "min_length_inclusive": 4097,
+        "max_length_inclusive": 9600,
+        "target_micro_batch_size": 1
+      }
+    ]
+  },
+  "max_length": 9600,
+  "learning_rate": 0.0001,
+  "weight_decay": 0.01,
+  "adam_betas": [0.9, 0.95],
+  "max_grad_norm": 1.0,
+  "scheduler": "cosine",
+  "warmup_ratio": 0.03,
+  "minimum_learning_rate_ratio": 0.1,
+  "seed": 42,
+  "training_deck": {
+    "policy": "deterministic_global_augmented_epoch_deck",
+    "shuffle": "deterministic_per_epoch_seed",
+    "base_unique_rows": 142713,
+    "expert_unique_rows": 905,
+    "expert_occurrences_per_row_per_epoch": 8,
+    "occurrences_per_epoch": {
+      "translation": 102224,
+      "summarization": 46824,
+      "total": 149048
+    },
+    "natural_task_fraction": {
+      "translation": 0.6858461703612259,
+      "summarization": 0.3141538296387741
+    },
+    "total_occurrences": {
+      "translation": 204448,
+      "summarization": 93648,
+      "total": 298096
+    },
+    "derived_optimizer_steps": 18631
+  },
+  "hard_term_target_reading_loss_weight": 2.5,
+  "expert_quality_label": "gold_expert_corrected",
+  "expert_oversampling_factor": 8,
+  "neftune_alpha": 5.0,
+  "lora": {
+    "rank": 32,
+    "alpha": 64,
+    "dropout": 0.05,
+    "bias": "none",
+    "target_regex": "^(?:model\\.)?model\\.layers\\.\\d+\\.(?:self_attn\\.(?:q_proj|k_proj|v_proj|o_proj|g_proj|b_proj|f_a_proj|f_b_proj|g_a_proj|g_b_proj)|mlp\\.shared_experts\\.(?:gate_proj|up_proj|down_proj))$",
+    "expected_module_count": 528,
+    "expected_trainable_parameters": 133177344,
+    "excluded": [
+      "model.layers.*.mlp.experts.*",
+      "model.layers.*.mlp.gate.*",
+      "model.embed_tokens",
+      "model.norm",
+      "lm_head"
+    ]
+  },
+  "prompt": {
+    "source": "scripts/reference/shared_nodict_evaluation.py",
+    "reference_sha256": "a6e68d29f3db569ff78283f15b10680c11c2ff9f6472453dc8fd6ef9a7320b23",
+    "reasoning_effort": "none",
+    "think_render_option": "preserved",
+    "provider_system_prompt": false
+  },
+  "output_only_contract": {
+    "translation": "translated Korean body text only",
+    "summarization": "summarized Korean body text only",
+    "prompt_tokens_supervised": false,
+    "assistant_answer_tokens_supervised": true,
+    "assistant_termination_tokens_supervised": true,
+    "labels_notes_explanations_markdown_reasoning_framing_allowed": false,
+    "training_target_prefix_removal": {
+      "prefix": "답변: ",
+      "expected_rows": 3,
+      "ids": [
+        "sa_100_0020_0020_0010_011",
+        "sa_100_0020_0020_0010_162",
+        "sa_100_0020_0020_0010_192"
+      ]
+    },
+    "sealed_full_test_reference_exceptions": {
+      "policy": "retain unchanged for exact reference evaluation",
+      "prefix": "답변: ",
+      "expected_rows": 3,
+      "ids": [
+        "sa_100_0020_0020_0010_048",
+        "sa_100_0020_0020_0010_078",
+        "sa_100_0020_0020_0010_198"
+      ]
+    },
+    "inference_postprocessing": "outer strip only; no filtering or repair"
+  },
+  "validation": {
+    "eval_every_steps": 1000,
+    "subset_per_task": 512,
+    "selection_weights": {
+      "translation": 0.65,
+      "summarization": 0.35
+    },
+    "full_validation_steps": [9316, 13973, 18631],
+    "full_validation_candidates": [
+      {
+        "target_epoch": 1.0,
+        "step": 9316,
+        "consumed_occurrences": 149056,
+        "target_occurrences": 149048,
+        "occurrence_offset": 8
+      },
+      {
+        "target_epoch": 1.5,
+        "step": 13973,
+        "consumed_occurrences": 223568,
+        "target_occurrences": 223572,
+        "occurrence_offset": -4
+      },
+      {
+        "target_epoch": 2.0,
+        "step": 18631,
+        "consumed_occurrences": 298096,
+        "target_occurrences": 298096,
+        "occurrence_offset": 0
+      }
+    ],
+    "candidate_boundary_policy": "nearest_optimizer_boundary; at an exact half-step choose the later boundary",
+    "selection_policy": "argmin_full_validation_selection_loss",
+    "selection_tie_break": "earlier_optimizer_step",
+    "selected_step": null,
+    "early_stopping": {
+      "enabled": true,
+      "monitor": "selection_loss",
+      "mode": "min",
+      "minimum_epochs": 1.0,
+      "minimum_step": 9316,
+      "subset_baseline_policy": "last_fixed_subset_before_minimum_step",
+      "subset_patience_evaluations": 3,
+      "subset_min_delta": {
+        "absolute": 0.001,
+        "relative": 0.0025,
+        "combination": "max"
+      },
+      "full_validation_confirmation_required": true,
+      "confirmation_step": 13973,
+      "full_min_delta": {
+        "absolute": 0.0005,
+        "relative": 0.001,
+        "combination": "max"
+      },
+      "continue_if_either_task_materially_improves": true,
+      "earliest_stop_step": 13973,
+      "latest_stop_step": 18631,
+      "restore_best_full_validation": true,
+      "sealed_evaluation_not_monitor": true
+    }
+  },
+  "checkpoint": {
+    "save_every_steps": 100,
+    "save_every_hours": 4,
+    "recovery_trigger": "steps_or_hours_whichever_first",
+    "recovery_generations_to_keep": 2,
+    "candidate_checkpoint_retention": "retain_all",
+    "final_adapter_dirname": "final_adapter",
+    "best_adapter_dirname": "best_adapter",
+    "signal": "SIGUSR1",
+    "requeue_exit_code": 75
+  },
+  "evaluation": {
+    "datasets": ["full_test", "human_gold"],
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_model_len": 16384,
+    "translation_max_new_tokens": 8192,
+    "summarization_max_new_tokens": 6144,
+    "bleu_tokenizer": "ko-mecab",
+    "bert_model": "xlm-roberta-large",
+    "bert_batch_size": 8,
+    "metrics": [
+      "corpus_bleu",
+      "sentence_bleu_mean",
+      "rougeL_f1_mean",
+      "bertscore_f1_mean"
+    ]
+  }
+}

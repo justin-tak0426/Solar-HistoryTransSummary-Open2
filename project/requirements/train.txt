@@ -1,0 +1,10 @@
+# The shared solar-open-2 environment inherits the cluster's torch 2.11.0+cu128.
+git+https://github.com/upstageAI/transformers.git@ef5c37485091057070b36dd0620798f74988eb01
+fla-core[cuda]==0.5.1
+accelerate==1.14.0
+bitsandbytes==0.49.2
+einops==0.8.2
+huggingface_hub==1.21.0
+peft==0.19.1
+safetensors==0.8.0
+wandb==0.28.0

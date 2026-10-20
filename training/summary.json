@@ -1,0 +1,53 @@
+{
+  "model_name": "Solar-HistoryTransSummary-Open2-B200",
+  "status": "COMPLETED",
+  "training_completion": {
+    "status": "COMPLETED",
+    "epochs": 1,
+    "completed_epochs": 1.0,
+    "early_stopping_triggered": false,
+    "optimizer_steps": 9316,
+    "consumed_occurrences": 149048,
+    "expected_optimizer_steps": 9316,
+    "expected_occurrences": 149048
+  },
+  "training_coverage": {
+    "total_occurrences": 149048,
+    "skipped_occurrences": 0,
+    "unconsumed_planned_occurrences": 0,
+    "unique_raw_rows": 142713,
+    "task_occurrences": {
+      "translation": 102224,
+      "summarization": 46824
+    },
+    "quality_occurrences": {
+      "silver_model_generated": 141808,
+      "gold_expert_corrected": 7240
+    }
+  },
+  "trainable_parameters": 133177344,
+  "selection": {
+    "candidate_steps": [
+      4658,
+      9316
+    ],
+    "selected_step": 9316,
+    "selected_selection_loss": 0.4714653330437071,
+    "policy": "argmin_full_validation_selection_loss"
+  },
+  "validation_candidates": [
+    {
+      "step": 4658,
+      "selection_loss": 0.5011596055424218,
+      "translation_loss": 0.42080489950925826,
+      "summarization_loss": 0.6503897738897254
+    },
+    {
+      "step": 9316,
+      "selection_loss": 0.4714653330437071,
+      "translation_loss": 0.39223384984928916,
+      "summarization_loss": 0.6186095161190547
+    }
+  ],
+  "adapter_sha256": "34de50b7dee9e8baa98d48c8d84be11c984f6d922ae871c1d9c320f266a83846"
+}

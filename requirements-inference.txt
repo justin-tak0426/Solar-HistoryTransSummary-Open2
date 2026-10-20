@@ -1,0 +1,7 @@
+transformers @ git+https://github.com/upstageAI/transformers.git@ef5c37485091057070b36dd0620798f74988eb01
+peft==0.19.1
+accelerate==1.14.0
+fla-core==0.5.1
+flash-linear-attention==0.5.1
+safetensors==0.8.0
+sentencepiece==0.2.1
